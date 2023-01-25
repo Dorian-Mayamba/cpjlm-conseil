@@ -1,0 +1,44 @@
+body{
+    overflow-x: hidden;
+}
+
+.navbar .nav-item .nav-link{
+    display: inline-block;
+}
+
+
+
+.collapse{
+    position: relative;
+}
+
+
+.navbar-brand img{
+    width: 150px;
+}
+
+
+p{
+    font-size: 1.6vw;
+}
+
+
+footer .navbar .nav{
+    font-weight: bold;
+}
+
+
+@media screen and (max-device-width: 768px){
+    p{
+        font-size: 1.5vh;
+    }
+}
+
+@media screen and (max-device-width: 576px){
+    .navbar-brand img{
+        width: 200px;
+    }
+}
+
+
+

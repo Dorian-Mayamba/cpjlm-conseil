@@ -1,0 +1,30 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+@import 'style.css';
+
+@import 'index.css';
+
+@import 'dashboard.css';
+
+@import 'formations.css';
+
+@import 'missions.css';
+
+@import 'partenaires.css';
+
+@import 'about.css';
+
+.bg-green{
+	background-color:$green;
+}
+
+.text-green{
+	color:$green;
+}

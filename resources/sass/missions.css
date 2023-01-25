@@ -1,0 +1,5 @@
+.mission-banner{
+    background: url("../../public/mission-img/mission-bg.jpg") no-repeat;
+    height: 60vh;
+    background-size:100% 100%;
+}
