@@ -27,7 +27,8 @@ class ContactForm extends FormRequest
             'name' => 'required|string',
             'email' => 'required|email',
             'subject' => 'required|string',
-            'comment' => 'required|string'
+            'comment' => 'required|string',
+            'g-recaptcha-response' => 'required|recaptchav3:contact,0.5'
         ];
     }
 
@@ -42,7 +43,8 @@ class ContactForm extends FormRequest
             'name.required' => 'veuillez entrer votre nom',
             'email.required' => 'veuillez entrer votre email',
             'subject.required' => 'un sujet est requis',
-            'comment.required' => 'veuillez entrer une suggestion'
+            'comment.required' => 'veuillez entrer une suggestion',
+            'g-recaptcha-response.required' => 'veuillez valider le captcha'
         ];
     }
 }
