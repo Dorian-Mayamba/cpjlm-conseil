@@ -15,6 +15,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/slick/slick.min.js') }}"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('recaptchav3.sitekey') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -85,6 +86,13 @@
                 </ul>
             </div>
         </nav>
+        @if ($errors->any())
+            <ul class="alert alert-danger">
+                @foreach ($errors->all() as $message)
+                    <li>{{ $message }}</li>
+                @endforeach
+            </ul>
+        @endif
 
         <div class="modal fade " id="contactModal">
             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -123,8 +131,21 @@
                                     placeholder="Votre commentaire"></textarea>
                             </div>
                             <div class="form-group">
-                                <input class="btn btn-info btn-lg" type="submit" name="envoyer" value="Envoyer"
-                                    id="envoyer">
+                                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                                <script>
+                                    function btnClick(e){
+                                        e.preventDefault();
+                                        grecaptcha.ready(()=>{
+                                            grecaptcha.execute("{{ config('recaptchav3.sitekey') }}", {action:'contact'}).then((token)=>{
+                                                document.getElementById('g-recaptcha-response').value = token;
+                                                document.getElementById('contactForm').submit();
+                                            });
+                                        });
+                                    }
+                                </script>
+                            </div>
+                            <div class="form-group">
+                                <button onclick="btnClick(event)" class="g-recaptcha btn btn-info btn-lg">Envoyer</button>
                             </div>
                         </form>
                     </div>
@@ -159,6 +180,16 @@
     </footer>
 </div>
 <script>
+    setTimeout(function(){
+        $('.alert').fadeOut();
+    }, 3000);
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
     var links = $('.nav-link');
     $.each(links, (i, link) => {
         $(link).hover((e) => {
@@ -183,60 +214,13 @@
     });
     var inputs = $('input');
     $.each(inputs, function(i, input) {
-        if ($(input).attr('type') != "submit") {
             $(input).addClass("form-control");
-        }
     });
     $.each($('.nav-link'), (i, link) => {
         $(link).addClass('py-4');
         $(link).addClass('px-4');
         $(link).addClass('mx-3');
     });
-
-    $('#contactForm').submit((e) => {
-        e.preventDefault();
-        var fd = new FormData();
-        var inputName = $('#name').val();
-        var inputEmail = $('#email').val();
-        var inputSubject = $('#subject').val();
-        var inputComment = $('#comment').val();
-
-        fd.append('name', inputName);
-        fd.append('email', inputEmail);
-        fd.append('subject', inputSubject);
-        fd.append('comment', inputComment);
-
-        let formValues = {
-            name: fd.get('name'),
-            email: fd.get('email'),
-            subject: fd.get('subject'),
-            comment: fd.get('comment')
-        };
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-                method: 'POST',
-                url: $(e.target).attr('action'),
-                data: formValues,
-            })
-            .done(function(data) {
-                if(data=="success"){
-                    location.reload(true);
-                }
-            })
-            .fail(function(err) {
-                console.log(err.responseText);
-                var error = err.responseText;
-                var obj = JSON.parse(error).errors;
-                var values = Object.values(obj).map((val, i) => {
-                    return val + '\n';
-                });
-                alert(values);
-            })
-    })
 </script>
 </body>
 
