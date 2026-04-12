@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Partners;
+use Illuminate\Http\Response;
 
 class PagesController extends Controller
 {
@@ -45,5 +46,13 @@ class PagesController extends Controller
     public function partners(){
         $partners = Partners::all();
         return view('Pages.partners',['partners'=>$partners]);
+    }
+
+    /**
+     * @return Illminate\Contracts\View\View
+     */
+
+    public function mines(): \Illuminate\Contracts\View\View{
+        return view('Pages.mines');
     }
 }

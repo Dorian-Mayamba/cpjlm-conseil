@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link rel="icon" href="{{ asset('logo/Cropped-CPJLM-CONSEIL.png') }}" type="image/x-icon" sizes="32x32">
+    <link rel="icon" href="{{ asset('logo/LOGO_CPJLM_NEW.jpeg') }}" type="image/x-icon" sizes="32x32">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -32,7 +32,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="headerNavbar">
             <div class="img-link">
                 <a href="{{ route('Page.index') }}" class="navbar-brand" href="{{ route('Page.index') }}">
-                    <img class="brand-img" src="{{ asset('logo/Cropped-CPJLM-CONSEIL.png') }}"
+                    <img class="brand-img" src="{{ asset('logo/LOGO_CPJLM_NEW.jpeg') }}"
                         alt="CPJLM-CONSEIL">
                 </a>
             </div>
