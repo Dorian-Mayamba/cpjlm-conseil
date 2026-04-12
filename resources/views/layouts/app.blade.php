@@ -29,10 +29,10 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="headerNavbar">
+        <nav style="background-color : #eaedef !important;" class="navbar navbar-expand-lg navbar-light bg-light" aria-label="headerNavbar">
             <div class="img-link">
                 <a href="{{ route('Page.index') }}" class="navbar-brand" href="{{ route('Page.index') }}">
-                    <img class="brand-img" src="{{ asset('logo/LOGO_CPJLM_NEW.jpeg') }}"
+                    <img class="brand-img" src="{{ asset('logo/logo_CPJLM-NEW.png') }}"
                         alt="CPJLM-CONSEIL">
                 </a>
             </div>
