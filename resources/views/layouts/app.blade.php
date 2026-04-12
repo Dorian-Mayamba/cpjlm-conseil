@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link rel="icon" href="{{ asset('logo/LOGO_CPJLM_NEW.jpeg') }}" type="image/x-icon" sizes="32x32">
+    <link rel="icon" href="{{ asset('logo/logo_CPJLM-NEW.png') }}" type="image/x-icon" sizes="32x32">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
